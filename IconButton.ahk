@@ -2,8 +2,8 @@
 IconButton
 AHK v2 button class with icon support
 -------------------------------------------
-Version: 1.0.0
-25/02/2026
+Version: 1.1
+13/10/2026
 
 https://github.com/mesutakcan/IconButton
 
@@ -62,7 +62,9 @@ class IconButton {
 
 		; Save original text-alignment style bits so ClearIcon can restore them.
 		; BS_LEFT=0x0100, BS_RIGHT=0x0200, BS_CENTER=0x0300 — mask is 0x0300.
-		origStyle := DllCall("GetWindowLongPtr", "Ptr", this._btn.Hwnd, "Int", -16, "Ptr")
+		; GetWindowLong works on both 32-bit and 64-bit processes; GetWindowLongPtr
+		; is unavailable in 32-bit builds.
+		origStyle := DllCall("GetWindowLong", "Ptr", this._btn.Hwnd, "Int", -16, "Int")
 		this.DefineProp("_origTextAlign", { Value: origStyle & 0x0300 })
 
 		; Register DPI-change handler
@@ -225,20 +227,20 @@ class IconButton {
 		if this._text != "" {
 			switch position {
 				case "left", "right":
-				{
-					client := this._GetClientSize()
-					tw := this._MeasureText()
-					totalW := scaledSize + tw
-					side := Max(0, Round((client.W - totalW) / 2))
+					{
+						client := this._GetClientSize()
+						tw := this._MeasureText()
+						totalW := scaledSize + tw
+						side := Max(0, Round((client.W - totalW) / 2))
 
-					if position = "left" {
-						mL := side
-						this._SetTextAlign(0x0100) ; BS_LEFT
-					} else {
-						mR := side
-						this._SetTextAlign(0x0200) ; BS_RIGHT
+						if position = "left" {
+							mL := side
+							this._SetTextAlign(0x0100) ; BS_LEFT
+						} else {
+							mR := side
+							this._SetTextAlign(0x0200) ; BS_RIGHT
+						}
 					}
-				}
 				case "top":
 					mT := 4, mB := 2
 					this._SetTextAlign(this._origTextAlign)
@@ -292,9 +294,9 @@ class IconButton {
 	; All other window-style bits are preserved.
 	_SetTextAlign(alignBits) {
 		GWL_STYLE := -16
-		cur := DllCall("GetWindowLongPtr", "Ptr", this._btn.Hwnd, "Int", GWL_STYLE, "Ptr")
-		DllCall("SetWindowLongPtr", "Ptr", this._btn.Hwnd, "Int", GWL_STYLE,
-			"Ptr", (cur & ~0x0300) | alignBits, "Ptr")
+		cur := DllCall("GetWindowLong", "Ptr", this._btn.Hwnd, "Int", GWL_STYLE, "Int")
+		DllCall("SetWindowLong", "Ptr", this._btn.Hwnd, "Int", GWL_STYLE,
+			"Int", (cur & ~0x0300) | alignBits, "Int")
 		DllCall("InvalidateRect", "Ptr", this._btn.Hwnd, "Ptr", 0, "Int", 1)
 	}
 
