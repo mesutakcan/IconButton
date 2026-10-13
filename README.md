@@ -1,16 +1,8 @@
-# IconButton Control
-[![AutoHotkey](https://img.shields.io/badge/Language-AutoHotkey_v2-green.svg)](https://www.autohotkey.com/)
-[![Platform](https://img.shields.io/badge/Platform-Windows-blue.svg)](https://www.microsoft.com/windows)
-[![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/Version-1.0.0-brightgreen.svg)](https://github.com/mesutakcan/IconButton/releases)
+# IconButton
 
-![GitHub stars](https://img.shields.io/github/stars/mesutakcan/IconButton?style=social)
-![GitHub forks](https://img.shields.io/github/forks/mesutakcan/IconButton?style=social)
-![GitHub issues](https://img.shields.io/github/issues/mesutakcan/IconButton)
+A lightweight [AutoHotkey v2](https://www.autohotkey.com) class that adds **icon support** to standard GUI buttons — with automatic DPI scaling, grayscale on disable, and flexible icon positioning.
 
-A lightweight [AutoHotkey v2](https://www.autohotkey.com/) class that adds **icon support** to standard GUI buttons — with automatic DPI scaling, grayscale on disable, and flexible icon positioning.
-
-![Screenshot](examples_screenshot.png)
+---
 
 ## ✨ Features
 
@@ -28,7 +20,7 @@ A lightweight [AutoHotkey v2](https://www.autohotkey.com/) class that adds **ico
 
 ## 📋 Requirements
 
-- **[AutoHotkey v2.0](https://www.autohotkey.com/)** or later
+- **[AutoHotkey v2](https://www.autohotkey.com)** or later
 - **Windows 10+** (uses `GetDpiForWindow`; falls back to `GetDeviceCaps` on older systems)
 
 ---
@@ -257,6 +249,16 @@ All GDI resources (ImageLists, HICONs, DIBs) are properly tracked and freed:
 
 ---
 
+## 📁 Files
+
+| File             | Description                                   |
+| ---------------- | --------------------------------------------- |
+| `IconButton.ahk` | The main class — include this in your scripts |
+| `Examples.ahk`   | Runnable demo showcasing every feature        |
+| `README.md`      | This documentation                            |
+
+---
+
 ## 👤 Author
 
 **Mesut Akcan**
@@ -264,6 +266,4 @@ All GDI resources (ImageLists, HICONs, DIBs) are properly tracked and freed:
 - GitHub: [mesutakcan](https://github.com/mesutakcan)
 - Blog: [mesutakcan.blogspot.com](https://mesutakcan.blogspot.com)
 - YouTube: [mesutakcan](https://www.youtube.com/mesutakcan)
-
-
 
