@@ -2,7 +2,7 @@
 
 A lightweight [AutoHotkey v2](https://www.autohotkey.com) class that adds **icon support** to standard GUI buttons — with automatic DPI scaling, grayscale on disable, and flexible icon positioning.
 
----
+![Screenshot](examples_screenshot.png)
 
 ## ✨ Features
 
